@@ -1,8 +1,13 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { ApiCreatedResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import {
+    ApiBadRequestResponse,
+    ApiCreatedResponse,
+    ApiOperation,
+    ApiTags,
+} from "@nestjs/swagger";
 import { CreateUserDto } from "../../dto/create-user.dto";
 import { UserEntity } from "../../entities/user.entity";
-import { CreateUserService } from "../../useCases/createUser/createUserService";
+import { CreateUserService } from "./createUser.service";
 
 @Controller("users")
 @ApiTags("users")
@@ -13,7 +18,11 @@ export class CreateUserController {
     @ApiOperation({
         summary: "Create a user",
     })
-    @ApiCreatedResponse({ type: UserEntity })
+    @ApiCreatedResponse({
+        type: UserEntity,
+        description: "The user has been successfully created.",
+    })
+    @ApiBadRequestResponse({ description: "User already exists!" })
     async create(@Body() data: CreateUserDto) {
         return this.createUserService.create(data);
     }

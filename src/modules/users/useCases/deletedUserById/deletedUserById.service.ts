@@ -1,12 +1,11 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
-import { UpdateUserDto } from "../../dto/update-user.dto";
 
 @Injectable()
-export class UpdatedUserByIdService {
+export class DeletedUserByIdService {
     constructor(private prisma: PrismaService) {}
 
-    async update(id: string, data: UpdateUserDto) {
+    async delete(id: string) {
         const userExists = await this.prisma.user.findUnique({
             where: {
                 id,
@@ -14,11 +13,10 @@ export class UpdatedUserByIdService {
         });
 
         if (!userExists) {
-            throw new BadRequestException("User does not exists!");
+            throw new NotFoundException("User does not exists!");
         }
 
-        return await this.prisma.user.update({
-            data,
+        return await this.prisma.user.delete({
             where: {
                 id,
             },

@@ -1,8 +1,12 @@
 import { Body, Controller, Param, Put } from "@nestjs/common";
-import { ApiCreatedResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import {
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags,
+} from "@nestjs/swagger";
 import { UpdateUserDto } from "../../dto/update-user.dto";
-import { UserEntity } from "../../entities/user.entity";
-import { UpdatedUserByIdService } from "../../useCases/updatedUserById/updatedUserByIdService";
+import { UpdatedUserByIdService } from "./updatedUserById.service";
 
 @Controller("users")
 @ApiTags("users")
@@ -15,7 +19,10 @@ export class UpdatedUserByIdController {
     @ApiOperation({
         summary: "Update a user by id",
     })
-    @ApiCreatedResponse({ type: UserEntity })
+    @ApiOkResponse({
+        description: "User have been successfully deleted.",
+    })
+    @ApiNotFoundResponse({ description: "User does not exists!" })
     async update(@Param("id") id: string, @Body() data: UpdateUserDto) {
         return this.updatedUserByIdService.update(id, data);
     }

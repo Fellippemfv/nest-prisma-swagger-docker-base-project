@@ -1,7 +1,11 @@
 import { Controller, Delete, Param } from "@nestjs/common";
-import { ApiCreatedResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { UserEntity } from "../../entities/user.entity";
-import { DeletedUserByIdService } from "./DeletedUserByIdService";
+import {
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags,
+} from "@nestjs/swagger";
+import { DeletedUserByIdService } from "./deletedUserById.service";
 
 @Controller("users")
 @ApiTags("users")
@@ -14,7 +18,8 @@ export class DeletedUserByIdController {
     @ApiOperation({
         summary: "Delete a user by id",
     })
-    @ApiCreatedResponse({ type: UserEntity })
+    @ApiOkResponse({ description: "A user has been successfully deleted." })
+    @ApiNotFoundResponse({ description: "User does not exists!" })
     async remove(@Param("id") id: string) {
         return this.deletedUserByIdService.delete(id);
     }

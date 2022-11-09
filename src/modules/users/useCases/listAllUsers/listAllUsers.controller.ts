@@ -1,7 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
-import { ApiCreatedResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { UserEntity } from "../../entities/user.entity";
-import { ListAllUsersService } from "../../useCases/listAllUsers/listAllUsersService";
+import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ListAllUsersService } from "./listAllUsers.service";
 
 @Controller("users")
 @ApiTags("users")
@@ -12,7 +11,9 @@ export class ListAllUsersController {
     @ApiOperation({
         summary: "Show all users",
     })
-    @ApiCreatedResponse({ type: UserEntity })
+    @ApiOkResponse({
+        description: "All users have been successfully displayed.",
+    })
     async findAll() {
         return this.listAllUsersService.findAll();
     }
