@@ -110,6 +110,9 @@ $ npx prisma migrate dev
 
 # Para Criar dados para as tabelas
 $ npx prisma db seed
+
+# Para ele re-carregar client do banco de dados
+$ npx prisma db push
 ```
 
 ##### Para testar aplicação
