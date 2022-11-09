@@ -1,6 +1,8 @@
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
 import { UpdateUserDto } from "../../dto/update-user.dto";
 
+@Injectable()
 export class UpdatedUserByIdService {
     constructor(private prisma: PrismaService) {}
 
@@ -12,7 +14,7 @@ export class UpdatedUserByIdService {
         });
 
         if (!userExists) {
-            throw new Error("User does not exists!");
+            throw new BadRequestException("User does not exists!");
         }
 
         return await this.prisma.user.update({

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
 
 @Injectable()
@@ -13,7 +13,7 @@ export class DeletedUserByIdService {
         });
 
         if (!userExists) {
-            throw new Error("User does not exists!");
+            throw new BadRequestException("User does not exists!");
         }
 
         return await this.prisma.user.delete({
