@@ -5,7 +5,7 @@ import {
     ApiOperation,
     ApiTags,
 } from "@nestjs/swagger";
-import { DeletedUserByIdService } from "./deletedUserById.service";
+import { DeletedUserByIdService } from "./deleteOneUserById.service";
 
 @Controller("users")
 @ApiTags("users")

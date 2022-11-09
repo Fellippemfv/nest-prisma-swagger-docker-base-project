@@ -6,7 +6,7 @@ import {
     ApiTags,
 } from "@nestjs/swagger";
 import { UpdateUserDto } from "../../dto/update-user.dto";
-import { UpdatedUserByIdService } from "./updatedUserById.service";
+import { UpdatedUserByIdService } from "./updateOneUserById.service";
 
 @Controller("users")
 @ApiTags("users")
