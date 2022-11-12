@@ -68,7 +68,6 @@ Para rodar totalmente este projeto você vai precisar criar e iniciar um contain
 ##### Passo  1° Criar e iniciar container
 
 ```bash
-
 # Para criar e iniciar container de desenvlvimento em background
 $ npm run docker:dev:up
 
@@ -85,28 +84,19 @@ $ docker-compose stop
 ##### Passo 2° - Iniciar servidor para o node
 
 ```bash
-# development - Inicia um servidor nodejs em primeiro plano
-$ npm run start
-
 # watch mode - Inicia um servidor nodejs em segundo plano
 $ npm run start:dev
-
-# production mode - Inicia um servidor nodejs com pasta dist
-$ npm run start:prod
 ```
-
 
 ##### Passo  3° - Iniciar servidor para o prisma studio
 
 ```bash
-
 # Para iniciar o prisma studio na porta 5555
 $ npx prisma studio
 ```
 
 ##### Passo  4° - Para rodar a migration (Ela que vai gerar as tabelas no banco de dados). E Usar seed (Ela que vai gerar os dados das tabelas).
 ```bash
-
 # Para criar tabelas no banco de dados de desenvolvimento
 $ migrate:dev
 
@@ -122,14 +112,8 @@ $ npx prisma db push
 
 ##### Para testar aplicação
 ```bash
-# unit tests -  Testes de unidade
-$ npm run test
-
 # e2e tests - Testes de ponta a ponta
 $ npm run test:e2e
-
-# test coverage - testes de integração
-$ npm 
 ```
 ##### Para testar rotas 
 Abrir aplicativo inmsomnia e importar o arquivo que está dentro da pasta "inmsomnia" na pasta raiz deste projeto. Com isso você já vai ter configurado as rotas para teste.
