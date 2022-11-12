@@ -68,11 +68,12 @@ Para rodar totalmente este projeto você vai precisar criar e iniciar um contain
 ##### Passo  1° Criar e iniciar container
 
 ```bash
-# Para criar e iniciar um container em primeiro plano
-$ docker-compose -f docker-compose.yml up
 
-# Para criar e iniciar container em segundo plano
-$ docker-compose up -d
+# Para criar e iniciar container de desenvlvimento em background
+$ npm run docker:dev:up
+
+# Para criar e iniciar container de testes em background
+$ npm run docker:test:up
 
 # Para iniciar container
 $ docker-compose start
@@ -105,10 +106,14 @@ $ npx prisma studio
 
 ##### Passo  4° - Para rodar a migration (Ela que vai gerar as tabelas no banco de dados). E Usar seed (Ela que vai gerar os dados das tabelas).
 ```bash
-# Para criar tabelas
-$ npx prisma migrate dev
 
-# Para Criar dados para as tabelas
+# Para criar tabelas no banco de dados de desenvolvimento
+$ migrate:dev
+
+# Para criar tabelas no banco de dados de teste
+$ migrate:test
+
+# Para Criar dados para as tabelas do banco de dados de desenvolvimento
 $ npx prisma db seed
 
 # Para ele re-carregar client do banco de dados
@@ -117,13 +122,13 @@ $ npx prisma db push
 
 ##### Para testar aplicação
 ```bash
-# unit tests - Testes unitários
+# unit tests -  Testes de unidade
 $ npm run test
 
-# e2e tests - Testes end-to-end
+# e2e tests - Testes de ponta a ponta
 $ npm run test:e2e
 
-# test coverage - Teste de cobertura
+# test coverage - testes de integração
 $ npm 
 ```
 ##### Para testar rotas 

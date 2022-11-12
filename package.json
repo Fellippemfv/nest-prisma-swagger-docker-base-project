@@ -4,21 +4,27 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "docker:up:dev": "dotenv -e .env.dev -- docker-compose --profile dev up -d",
+    "docker:up:test": "dotenv -e .env.test -- docker-compose --profile test up -d",
+    "docker:down": "docker-compose down",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev",
+    "migrate:test": "dotenv -e .env.test -- npx prisma migrate deploy",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "dotenv -e .env.test -- jest --config ./test/jest-e2e.json",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "dotenv -e .env.test -- jest --config ./test/jest-e2e.json"
+
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -29,6 +35,7 @@
     "@prisma/client": "^4.5.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "dotenv-cli": "^6.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
