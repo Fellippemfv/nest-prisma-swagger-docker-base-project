@@ -63,62 +63,86 @@ $ cd nest-prisma-swagger-docker-base-project
 # Instalar dependências
 $ npm install
 ```
-Para rodar totalmente este projeto você vai precisar criar e iniciar um container no docker, iniciar um servidor para o node e outro para o prisma studio e usar o aplicativo insomnia para testes das rotas. A documentação esta na rota http://localhost:3000/api
+Para rodar totalmente este projeto você vai precisar criar e iniciar um container no docker, iniciar um servidor para o node e outro para o prisma studio e usar o aplicativo insomnia para testes das rotas, ou se preferir usar os testes de integração ou testes e2e.
 
-##### Passo  1° Criar e iniciar container
+####Criar e iniciar container via docker-compose
 
+Para criar e iniciar container do banco de dados em background na porta 5432
 ```bash
-# Para criar e iniciar container de desenvlvimento em background
-$ npm run docker:dev:up
-
-# Para criar e iniciar container de testes em background
+$ npm run docker:up
+```
+Para criar e iniciar container de testes em background na porta 9000
+```bash
 $ npm run docker:test:up
-
-# Para iniciar container
-$ docker-compose start
-
-# Para pausar container
+```
+Para pausar todos os containers
+```bash
 $ docker-compose stop
 ```
 
-##### Passo 2° - Iniciar servidor para o node
-
+Para iniciar todos os containers
 ```bash
-# watch mode - Inicia um servidor nodejs em segundo plano
+$ docker-compose start
+```
+
+#### Iniciar servidor nodeJS
+
+Inicia um servidor nodejs em background na porta 3000
+```bash
 $ npm run start:dev
 ```
 
-##### Passo  3° - Iniciar servidor para o prisma studio
+#### Iniciar servidor prisma studio
 
+Para iniciar o prisma studio na porta 5555
 ```bash
-# Para iniciar o prisma studio na porta 5555
 $ npx prisma studio
 ```
 
-##### Passo  4° - Para rodar a migration (Ela que vai gerar as tabelas no banco de dados). E Usar seed (Ela que vai gerar os dados das tabelas).
+#### Rodar migration
+Criar e sincronizar as tabelas no banco de dados
 ```bash
-# Para criar tabelas no banco de dados de desenvolvimento
-$ migrate:dev
+$ npm run migrate:dev
+```
 
-# Para criar tabelas no banco de dados de teste
-$ migrate:test
+Criar e sincronizar as tabelas no banco de dados de teste
+```bash
+$ npm run migrate:test
+```
 
-# Para Criar dados para as tabelas do banco de dados de desenvolvimento
-$ npx prisma db seed
+Para apenas criar tabela nova no banco de dados
+```bash
+$ npx prisma migrate dev --create-only
+```
 
-# Para ele re-carregar client do banco de dados
+Fazer sincronização de migration->banco de dados->schema
+```bash
 $ npx prisma db push
 ```
 
-##### Para testar aplicação
+#### Rodar seed
+Criar dados para as tabelas no banco de dados
 ```bash
-# e2e tests - Testes de ponta a ponta
+$ npx prisma db seed
+```
+
+#### Documentação do swagger
+A documentação esta na rota http://localhost:3000/api
+
+#### Testes da aplicação
+Testes de ponta a ponta (E2E Tests)
+```bash
 $ npm run test:e2e
 ```
-##### Para testar rotas 
+
+Testes de integração (Integration Testing)
+```bash
+$ npm run test
+```
+#### Inmsomnia 
 Abrir aplicativo inmsomnia e importar o arquivo que está dentro da pasta "inmsomnia" na pasta raiz deste projeto. Com isso você já vai ter configurado as rotas para teste.
 
-##### Análise de requisitos 
+<!-- ##### Análise de requisitos 
 
 ###### Cadastro de usuário
 
@@ -141,7 +165,7 @@ Abrir aplicativo inmsomnia e importar o arquivo que está dentro da pasta "inmso
 **RN**
 - Não deve ser possível listar um usuário com ID inexistente.
 - Não deve ser possível fazer update de um usuário com ID inexistente.
-- Não deve ser possível deletar um usuário com ID inexistente.
+- Não deve ser possível deletar um usuário com ID inexistente. -->
 
 ## :memo: Licença
 

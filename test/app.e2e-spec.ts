@@ -2,29 +2,13 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { INestApplication, ValidationPipe } from "@nestjs/common";
 import * as request from "supertest";
 import { AppModule } from "./../src/app.module";
-import { useContainer } from "class-validator";
 import { PrismaService } from "src/database/PrismaService";
+import { Tokens } from "src/modules/auth/types";
+import { AuthDto } from "src/modules/auth/dto";
 
 describe("AppController (e2e)", () => {
     let app: INestApplication;
     let prisma: PrismaService;
-
-    const usersData = [
-        {
-            id: "467050a0-d632-4f51-a5ac-ed843f3697eb",
-            email: "User1@hotmail.com",
-            name: "User 1",
-            created_at: new Date("2022-11-01 21:01:43.215"),
-            updated_at: new Date("2022-11-01 21:01:43.215"),
-        },
-        {
-            id: "36455717-811c-4d81-8a81-d751bdfe4e30",
-            email: "User2@hotmail.com",
-            name: "User 2",
-            created_at: new Date("2022-11-02 21:01:43.215"),
-            updated_at: new Date("2022-11-02 21:01:43.215"),
-        },
-    ];
 
     beforeAll(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -32,44 +16,78 @@ describe("AppController (e2e)", () => {
         }).compile();
 
         app = moduleFixture.createNestApplication();
-        prisma = app.get<PrismaService>(PrismaService);
-
-        useContainer(app.select(AppModule), { fallbackOnErrors: true });
-        app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-
+        app.useGlobalPipes(new ValidationPipe());
         await app.init();
 
-        await prisma.user.create({
-            data: usersData[0],
-        });
-        await prisma.user.create({
-            data: usersData[1],
-        });
+        prisma = app.get<PrismaService>(PrismaService);
+        await prisma.cleanDatabase();
     });
 
     afterAll(async () => {
-        const deleteUsers = prisma.user.deleteMany();
-
-        await prisma.$transaction([deleteUsers]);
-
         await app.close();
     });
 
-    describe("Get /users", () => {
-        it("returns a list of all users", async () => {
-            const { body } = await request(app.getHttpServer()).get("/users");
-            expect(body).toHaveLength(2);
-            expect(200);
-        });
-    });
+    describe("Auth", () => {
+        const dto: AuthDto = {
+            email: "test@gmail.com",
+            password: "super-secret-password",
+        };
 
-    describe("Post /users", () => {
-        it("create a user", async () => {
-            await request(app.getHttpServer()).post("/users").send({
-                name: "User Test1",
-                email: "UserTest1@gmail.com",
+        let tokens: Tokens;
+
+        it("should signup", () => {
+            return request(app.getHttpServer())
+                .post("/auth/local/signup")
+                .send(dto)
+                .expect(201)
+                .expect(({ body }: { body: Tokens }) => {
+                    expect(body.access_token).toBeTruthy();
+                    expect(body.refresh_token).toBeTruthy();
+                });
+        });
+        it("should signin", () => {
+            return request(app.getHttpServer())
+                .post("/auth/local/signin")
+                .send(dto)
+                .expect(200)
+                .expect(({ body }: { body: Tokens }) => {
+                    expect(body.access_token).toBeTruthy();
+                    expect(body.refresh_token).toBeTruthy();
+
+                    tokens = body;
+                });
+        });
+
+        it("should refresh tokens", async () => {
+            // wait for 1 second
+            await new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(true);
+                }, 1000);
             });
-            expect(201);
+
+            return request(app.getHttpServer())
+                .post("/auth/refresh")
+                .auth(tokens.refresh_token, {
+                    type: "bearer",
+                })
+                .expect(200)
+                .expect(({ body }: { body: Tokens }) => {
+                    expect(body.access_token).toBeTruthy();
+                    expect(body.refresh_token).toBeTruthy();
+
+                    expect(body.refresh_token).not.toBe(tokens.access_token);
+                    expect(body.refresh_token).not.toBe(tokens.refresh_token);
+                });
+        });
+
+        it("should logout", () => {
+            return request(app.getHttpServer())
+                .post("/auth/logout")
+                .auth(tokens.access_token, {
+                    type: "bearer",
+                })
+                .expect(200);
         });
     });
 });

@@ -7,9 +7,20 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
         await this.$connect();
     }
 
+    async onModuleDestroy() {
+        await this.$disconnect();
+    }
+
     async enableShutdownHooks(app: INestApplication) {
         this.$on("beforeExit", async () => {
             await app.close();
         });
+    }
+
+    async cleanDatabase() {
+        if (process.env.NODE_ENV === "production") return;
+
+        // teardown logic
+        return Promise.all([this.user.deleteMany()]);
     }
 }

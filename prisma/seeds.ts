@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+/* import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -80,3 +80,4 @@ AddUserToDatabase()
     .finally(async () => {
         await prisma.$disconnect();
     });
+ */
