@@ -1,7 +1,7 @@
 <!-- /* cSpell:disable */
 /* spell-checker: disable */
 /* spellchecker: disable */ -->
-<h1 align="center">Base para projetos nest e prisma </h1>
+<h1 align="center">Basis for NestJS and Prisma projects </h1>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-swagger-docker-base-project">
@@ -11,19 +11,20 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/Fellippemfv/nest-prisma-swagger-docker-base-project?color=yellow">
   
   <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
-  	<img alt="last-commit" src="https://img.shields.io/github/last-commit/Fellippemfv/nest-prisma-swagger-docker-base-project">
+   <img alt="last-commit" src="https://img.shields.io/github/last-commit/Fellippemfv/nest-prisma-swagger-docker-base-project">
   </a>
 
   <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
-  	<img alt="GitHub/license" src="https://img.shields.io/github/license/Fellippemfv/nest-prisma-swagger-docker-base-project">
+   <img alt="GitHub/license" src="https://img.shields.io/github/license/Fellippemfv/nest-prisma-swagger-docker-base-project">
   </a>
 </p>
 
 <p align="center">
-  <a href="#round_pushpin-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-tecnologias-utilizadas">Tecnologias utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#information_source-como-usar">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
+  <a href="#round_pushpin-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-how-to-use">How to use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="/docs/readme_pt-BR.md">Readme em Português</a>
 </p>
 
 <p align="center">
@@ -32,137 +33,157 @@
 
 <br>
 
-## :round_pushpin: Sobre o projeto
+## :round_pushpin: About the project
 
-Nesta base para projetos, utilizamos no backend nodeJS com o nestJS, no banco de dados prisma com postegre, ele é todo documentado usando swagger com a extensão nest/swagger, e tudo isso dentro de um container docker que é criado a partir do arquivo docker-compose. Vem com um sistema de autenticação de usuário pronto.
+On this basis for projects, we use it in the nodeJS backend with nestJS,prisma database with postegre, it is all documented using swagger with the extension nest/swagger, and all this inside a docker container that is created from the file docker-compose. It comes with a ready-made user authentication system.
 
+## :rocket: Technologies
 
-## :rocket: Tecnologias utilizadas
+This project was developed with the following technologies:
 
-Este projeto foi desenvolvido com as seguintes tecnologias:
+- [NodeJS](https://nodejs.org/en/)
+- [NestJS](https://nestjs.com)
+- [Prisma](https://www.prisma.io)
+- [Docker](https://www.docker.com)
+- [TypeScript](https://www.typescriptlang.org)
+- [Eslint](https://eslint.org)
+- [Prettier](https://prettier.io)
 
--  [NodeJS](https://nodejs.org/en/)
--  [NestJS](https://nestjs.com)
--  [Prisma](https://www.prisma.io)
--  [Docker](https://www.docker.com)
--  [TypeScript](https://www.typescriptlang.org)
--  [Eslint](https://eslint.org)
--  [Prettier](https://prettier.io)
+## :information_source: How to use
 
-## :information_source: Como usar
-
-Para clonar e executar esta aplicação, você precisará do [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Npm](https://www.npmjs.com/), [Docker](https://www.docker.com) e um editor de texto igual ao [Vs code](https://code.visualstudio.com/) instalado em seu computador. Na sua linha de comando:
+To clone and run this application, you will need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Npm](https://www.npmjs.com/), [Docker](https://www.docker.com) and a text editor like [Vs code](https://code.visualstudio.com/) installed on your computer. On your command line:
 
 ```bash
-# Clonar este repositório
+# Clone this repository
 $ git clone https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project
 
-# Ir até a pasta criada
+# Go to the created folder
 $ cd nest-prisma-swagger-docker-base-project
 
-# Instalar dependências
+# install dependencies
 $ npm install
 ```
-Para rodar totalmente este projeto você vai precisar criar e iniciar um container no docker, iniciar um servidor para o node e outro para o prisma studio e usar o aplicativo insomnia para testes das rotas, ou se preferir usar os testes de integração ou testes e2e.  
+
+To fully run this project you will need to create and start a container in docker, start a server for node and another for prisma studio and use the insomnia application to test the routes, or if you prefer to use integration tests or e2e tests.
 
 <br>
 
-### Criar e iniciar container via docker-compose
+### Create and start container via docker-compose
 
-Para criar e iniciar container do banco de dados em background na porta 5432
+To create and start database container in background on port 5432
+
 ```bash
-$ npm run docker:up
-```
-Para criar e iniciar container de testes em background na porta 9000
-```bash
-$ npm run docker:test:up
-```
-Para pausar todos os containers
-```bash
-$ docker-compose stop
+npm run docker:up
 ```
 
-Para iniciar todos os containers
+To create and start test container in background on port 9000
+
 ```bash
-$ docker-compose start
+npm run docker:test:up
 ```
 
-<br>
+To pause all containers
 
-### Iniciar servidor nodeJS
-
-Inicia um servidor nodejs em background na porta 3000
 ```bash
-$ npm run start:dev
+docker-compose stop
 ```
 
-<br>
+To start all containers
 
-### Iniciar servidor prisma studio
-
-Para iniciar o prisma studio na porta 5555
 ```bash
-$ npx prisma studio
+docker-compose start
 ```
 
 <br>
 
-### Rodar migration
-Criar e sincronizar as tabelas no banco de dados
-```bash
-$ npm run migrate:dev
-```
+### Start nodeJS server
 
-Criar e sincronizar as tabelas no banco de dados de teste
-```bash
-$ npm run migrate:test
-```
+Start a nodejs server in background on port 3000
 
-Para apenas criar tabela nova no banco de dados
 ```bash
-$ npx prisma migrate dev --create-only
-```
-
-Fazer sincronização de migration->banco de dados->schema
-```bash
-$ npx prisma db push
+npm run start:dev
 ```
 
 <br>
 
-### Rodar seed
-Criar dados para as tabelas no banco de dados
+### Start prisma studio server
+
+Start prisma studio on port 5555
+
 ```bash
-$ npx prisma db seed
+npx prisma studio
 ```
 
 <br>
 
-### Documentação do swagger
-A documentação esta na rota http://localhost:3000/api
+### Run migration
 
-<br>
+Create and sync the tables in the database
 
-### Testes da aplicação
-Testes de ponta a ponta (E2E Tests)
 ```bash
-$ npm run test:e2e
+npm run migrate:dev
 ```
 
-Testes de integração (Integration Testing)
+Create and sync the tables in the database_test
+
 ```bash
-$ npm run test
+npm run migrate:test
+```
+
+To just create new table in database
+
+```bash
+npx prisma migrate dev --create-only
+```
+
+Do migration sync --> database --> schema
+
+```bash
+npx prisma db push
 ```
 
 <br>
 
-### Inmsomnia 
-Abrir aplicativo inmsomnia e importar o arquivo que está dentro da pasta "inmsomnia" na pasta raiz deste projeto. Com isso você já vai ter configurado as rotas para teste.
+### Run seed
+
+Create data for the tables in the database
+
+```bash
+npx prisma db seed
+```
 
 <br>
 
-## :memo: Licença
+### Swagger documentation
 
-Este projeto está sob a licença do MIT. Veja o [LICENSE](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) para mais informação.
+The documentation is on route <http://localhost:3000/api>
+
+<br>
+
+### Application tests
+
+End-to-end tests (E2E Tests)
+
+```bash
+npm run test:e2e
+```
+
+Integration tests
+
+```bash
+npm run test
+```
+
+<br>
+
+### Inmsomnia
+
+Open inmsomnia application and import the file that is inside the "inmsomnia" folder in the root folder of this project. With this you will already have configured the routes for testing.
+
+<br>
+
+## :memo: License
+
+This project is under the MIT license. See [LICENSE](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) for more information.
 
 ---
