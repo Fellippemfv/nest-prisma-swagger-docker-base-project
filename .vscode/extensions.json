@@ -3,6 +3,9 @@
         "dbaeumer.vscode-eslint",
         "prisma.prisma",
         "prisma.prisma-insider",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "editorconfig.editorconfig",
+        "shd101wyy.markdown-preview-enhanced"
     ]
 }
