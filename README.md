@@ -34,7 +34,7 @@
 
 ## :round_pushpin: Sobre o projeto
 
-Nesta base para projetos, utilizamos no backend nodeJS com o nestJS, no banco de dados prisma, ele é todo documentado usando swagger com a extensão nest/swagger, e tudo isso dentro de um container docker que é criado a partir do arquivo docker-compose. Com uma estrutura de autenticação de usuario pronta.
+Nesta base para projetos, utilizamos no backend nodeJS com o nestJS, no banco de dados prisma, ele é todo documentado usando swagger com a extensão nest/swagger, e tudo isso dentro de um container docker que é criado a partir do arquivo docker-compose. Na separação de pastas usamos principios de solid.
 
 
 ## :rocket: Tecnologias utilizadas
@@ -63,8 +63,10 @@ $ cd nest-prisma-swagger-docker-base-project
 # Instalar dependências
 $ npm install
 ```
-Para rodar totalmente este projeto você vai precisar criar e iniciar um container no docker, iniciar um servidor para o node e outro para o prisma studio e usar o aplicativo insomnia para testes das rotas, ou se preferir usar os testes de integração ou testes e2e.
+Para rodar totalmente este projeto você vai precisar criar e iniciar um container no docker, iniciar um servidor para o node e outro para o prisma studio e usar o aplicativo insomnia para testes das rotas, ou se preferir usar os testes de integração ou testes e2e.  
+
 <br>
+
 #### Criar e iniciar container via docker-compose
 
 Para criar e iniciar container do banco de dados em background na porta 5432
@@ -84,21 +86,23 @@ Para iniciar todos os containers
 ```bash
 $ docker-compose start
 ```
+
 <br>
+
 #### Iniciar servidor nodeJS
 
 Inicia um servidor nodejs em background na porta 3000
 ```bash
 $ npm run start:dev
 ```
-<br>
+
 #### Iniciar servidor prisma studio
 
 Para iniciar o prisma studio na porta 5555
 ```bash
 $ npx prisma studio
 ```
-<br>
+
 #### Rodar migration
 Criar e sincronizar as tabelas no banco de dados
 ```bash
@@ -119,16 +123,16 @@ Fazer sincronização de migration->banco de dados->schema
 ```bash
 $ npx prisma db push
 ```
-<br>
+
 #### Rodar seed
 Criar dados para as tabelas no banco de dados
 ```bash
 $ npx prisma db seed
 ```
-<br>
+
 #### Documentação do swagger
 A documentação esta na rota http://localhost:3000/api
-<br>
+
 #### Testes da aplicação
 Testes de ponta a ponta (E2E Tests)
 ```bash
@@ -139,10 +143,9 @@ Testes de integração (Integration Testing)
 ```bash
 $ npm run test
 ```
-<br>
 #### Inmsomnia 
 Abrir aplicativo inmsomnia e importar o arquivo que está dentro da pasta "inmsomnia" na pasta raiz deste projeto. Com isso você já vai ter configurado as rotas para teste.
-<br>
+
 ## :memo: Licença
 
 Este projeto está sob a licença do MIT. Veja o [LICENSE](https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md) para mais informação.
