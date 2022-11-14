@@ -105,7 +105,9 @@ Para iniciar o prisma studio na porta 5555
 $ npx prisma studio
 ```
 
-#### Rodar migration
+<br>
+
+### Rodar migration
 Criar e sincronizar as tabelas no banco de dados
 ```bash
 $ npm run migrate:dev
@@ -126,16 +128,22 @@ Fazer sincronização de migration->banco de dados->schema
 $ npx prisma db push
 ```
 
-#### Rodar seed
+<br>
+
+### Rodar seed
 Criar dados para as tabelas no banco de dados
 ```bash
 $ npx prisma db seed
 ```
 
-#### Documentação do swagger
+<br>
+
+### Documentação do swagger
 A documentação esta na rota http://localhost:3000/api
 
-#### Testes da aplicação
+<br>
+
+### Testes da aplicação
 Testes de ponta a ponta (E2E Tests)
 ```bash
 $ npm run test:e2e
@@ -145,8 +153,13 @@ Testes de integração (Integration Testing)
 ```bash
 $ npm run test
 ```
-#### Inmsomnia 
+
+<br>
+
+### Inmsomnia 
 Abrir aplicativo inmsomnia e importar o arquivo que está dentro da pasta "inmsomnia" na pasta raiz deste projeto. Com isso você já vai ter configurado as rotas para teste.
+
+<br>
 
 ## :memo: Licença
 
