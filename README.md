@@ -4,18 +4,18 @@
 <h1 align="center">Base para projetos nest e prisma </h1>
 
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-project-concepts">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Fellippemfv/nest-prisma-swagger-docker-base-project">
 
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Fellippemfv/nest-prisma-project-concepts?color=red">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Fellippemfv/nest-prisma-swagger-docker-base-project?color=red">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Fellippemfv/nest-prisma-project-concepts?color=yellow">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Fellippemfv/nest-prisma-swagger-docker-base-project?color=yellow">
   
-  <a href="https://github.com/Fellippemfv/nest-prisma-project-concepts/commits/master">
-  	<img alt="last-commit" src="https://img.shields.io/github/last-commit/Fellippemfv/nest-prisma-project-concepts">
+  <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/commits/master">
+  	<img alt="last-commit" src="https://img.shields.io/github/last-commit/Fellippemfv/nest-prisma-swagger-docker-base-project">
   </a>
 
-  <a href="https://github.com/Fellippemfv/nest-prisma-project-concepts/blob/master/LICENSE.md">
-  	<img alt="GitHub/license" src="https://img.shields.io/github/license/Fellippemfv/nest-prisma-project-concepts">
+  <a href="https://github.com/Fellippemfv/nest-prisma-swagger-docker-base-project/blob/master/LICENSE.md">
+  	<img alt="GitHub/license" src="https://img.shields.io/github/license/Fellippemfv/nest-prisma-swagger-docker-base-project">
   </a>
 </p>
 
@@ -34,7 +34,7 @@
 
 ## :round_pushpin: Sobre o projeto
 
-Nesta base para projetos, utilizamos no backend nodeJS com o nestJS, no banco de dados prisma, ele é todo documentado usando swagger com a extensão nest/swagger, e tudo isso dentro de um container docker que é criado a partir do arquivo docker-compose. Na separação de pastas usamos principios de solid.
+Nesta base para projetos, utilizamos no backend nodeJS com o nestJS, no banco de dados prisma com postegre, ele é todo documentado usando swagger com a extensão nest/swagger, e tudo isso dentro de um container docker que é criado a partir do arquivo docker-compose. Vem com um sistema de autenticação de usuário pronto.
 
 
 ## :rocket: Tecnologias utilizadas
