@@ -65,8 +65,6 @@ $ npm install
 ```
 Para rodar totalmente este projeto você vai precisar criar e iniciar um container no docker, iniciar um servidor para o node e outro para o prisma studio e usar o aplicativo insomnia para testes das rotas, ou se preferir usar os testes de integração ou testes e2e.  
 
-<br>
-
 #### Criar e iniciar container via docker-compose
 
 Para criar e iniciar container do banco de dados em background na porta 5432
@@ -86,8 +84,6 @@ Para iniciar todos os containers
 ```bash
 $ docker-compose start
 ```
-
-<br>
 
 #### Iniciar servidor nodeJS
 
