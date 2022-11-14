@@ -67,7 +67,7 @@ Para rodar totalmente este projeto você vai precisar criar e iniciar um contain
 
 <br>
 
-#### Criar e iniciar container via docker-compose
+### Criar e iniciar container via docker-compose
 
 Para criar e iniciar container do banco de dados em background na porta 5432
 ```bash
@@ -89,14 +89,16 @@ $ docker-compose start
 
 <br>
 
-#### Iniciar servidor nodeJS
+### Iniciar servidor nodeJS
 
 Inicia um servidor nodejs em background na porta 3000
 ```bash
 $ npm run start:dev
 ```
 
-#### Iniciar servidor prisma studio
+<br>
+
+### Iniciar servidor prisma studio
 
 Para iniciar o prisma studio na porta 5555
 ```bash
