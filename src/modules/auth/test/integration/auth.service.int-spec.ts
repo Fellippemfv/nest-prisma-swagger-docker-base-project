@@ -113,7 +113,7 @@ describe("Auth Flow", () => {
         });
 
         it("should pass if call to non existent user", async () => {
-            const result = await authService.logout(4);
+            const result = await authService.logout("4");
             expect(result).toBeDefined();
         });
 
@@ -153,7 +153,7 @@ describe("Auth Flow", () => {
         it("should throw if no existing user", async () => {
             let tokens: Tokens | undefined;
             try {
-                tokens = await authService.refreshTokens(1, "");
+                tokens = await authService.refreshTokens("1", "");
             } catch (error) {
                 expect(error.status).toBe(403);
             }
@@ -174,7 +174,7 @@ describe("Auth Flow", () => {
             // also possible to get using prisma like above
             // but since we have the rt already, why not just decoding it
             const decoded = decode(rt);
-            const userId = Number(decoded?.sub);
+            const userId = String(decoded?.sub);
 
             // logout the user so the hashedRt is set to null
             await authService.logout(userId);
@@ -203,7 +203,7 @@ describe("Auth Flow", () => {
             const rt = _tokens.refresh_token;
 
             const decoded = decode(rt);
-            const userId = Number(decoded?.sub);
+            const userId = String(decoded?.sub);
 
             let tokens: Tokens | undefined;
             try {
@@ -227,7 +227,7 @@ describe("Auth Flow", () => {
             const at = _tokens.access_token;
 
             const decoded = decode(rt);
-            const userId = Number(decoded?.sub);
+            const userId = String(decoded?.sub);
 
             // since jwt uses seconds signature we need to wait for 1 second to have new jwts
             await new Promise((resolve) => {

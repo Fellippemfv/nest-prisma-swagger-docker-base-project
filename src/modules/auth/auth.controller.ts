@@ -37,8 +37,10 @@ export class AuthController {
     })
     @ApiCreatedResponse({ description: "User has been successfully created" })
     @ApiBadRequestResponse({
-        description:
-            "User already exists or some character error or type error",
+        description: "Some character error or type error",
+    })
+    @ApiForbiddenResponse({
+        description: "User already exists",
     })
     signupLocal(@Body() data: AuthDto): Promise<Tokens> {
         return this.authService.signupLocal(data);

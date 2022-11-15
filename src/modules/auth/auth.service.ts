@@ -1,8 +1,4 @@
-import {
-    BadRequestException,
-    ForbiddenException,
-    Injectable,
-} from "@nestjs/common";
+import { ForbiddenException, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
@@ -28,7 +24,7 @@ export class AuthService {
         });
 
         if (userAlreadyExists) {
-            throw new BadRequestException("User already exists");
+            throw new ForbiddenException("User already exists");
         }
 
         const hash = await argon.hash(data.password);
