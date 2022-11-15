@@ -7,6 +7,14 @@ import {
     UseGuards,
 } from "@nestjs/common";
 import {
+    ApiBadRequestResponse,
+    ApiCreatedResponse,
+    ApiForbiddenResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags,
+} from "@nestjs/swagger";
+import {
     GetCurrentUser,
     GetCurrentUserId,
     Public,
@@ -17,27 +25,49 @@ import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
 import { Tokens } from "./types";
 
+@ApiTags("User authentication")
 @Controller("auth")
 export class AuthController {
     constructor(private authService: AuthService) {}
 
     @Public()
     @Post("local/signup")
-    @HttpCode(HttpStatus.CREATED)
-    signupLocal(@Body() dto: AuthDto): Promise<Tokens> {
-        return this.authService.signupLocal(dto);
+    @ApiOperation({
+        summary: "Create a user",
+    })
+    @ApiCreatedResponse({ description: "User has been successfully created" })
+    @ApiBadRequestResponse({
+        description:
+            "User already exists or some character error or type error",
+    })
+    signupLocal(@Body() data: AuthDto): Promise<Tokens> {
+        return this.authService.signupLocal(data);
     }
 
     @Public()
     @Post("local/signin")
     @HttpCode(HttpStatus.OK)
-    signinLocal(@Body() dto: AuthDto): Promise<Tokens> {
-        return this.authService.signinLocal(dto);
+    @ApiOperation({
+        summary: "Login with a user",
+    })
+    @ApiOkResponse({ description: "User has been successfully logged in" })
+    @ApiBadRequestResponse({
+        description: "Some character error or type error",
+    })
+    @ApiForbiddenResponse({
+        description: "Email or password incorrect",
+    })
+    signinLocal(@Body() data: AuthDto): Promise<Tokens> {
+        return this.authService.signinLocal(data);
     }
 
     @Post("logout")
     @HttpCode(HttpStatus.OK)
-    logout(@GetCurrentUserId() userId: number): Promise<boolean> {
+    @ApiOperation({
+        summary: "Logout with a user",
+    })
+    @ApiOkResponse({ description: "User has been successfully logout" })
+    logout(@GetCurrentUserId() userId: string): Promise<boolean> {
         return this.authService.logout(userId);
     }
 
@@ -45,8 +75,15 @@ export class AuthController {
     @UseGuards(RtGuard)
     @Post("refresh")
     @HttpCode(HttpStatus.OK)
+    @ApiOperation({
+        summary: "Refresh user token",
+    })
+    @ApiOkResponse({ description: "Token has been successfully refresh" })
+    @ApiForbiddenResponse({
+        description: "Access Denied",
+    })
     refreshTokens(
-        @GetCurrentUserId() userId: number,
+        @GetCurrentUserId() userId: string,
         @GetCurrentUser("refreshToken") refreshToken: string,
     ): Promise<Tokens> {
         return this.authService.refreshTokens(userId, refreshToken);

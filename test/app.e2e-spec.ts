@@ -28,7 +28,7 @@ describe("AppController (e2e)", () => {
     });
 
     describe("Auth", () => {
-        const dto: AuthDto = {
+        const data: AuthDto = {
             email: "test@gmail.com",
             password: "super-secret-password",
         };
@@ -38,7 +38,7 @@ describe("AppController (e2e)", () => {
         it("should signup", () => {
             return request(app.getHttpServer())
                 .post("/auth/local/signup")
-                .send(dto)
+                .send(data)
                 .expect(201)
                 .expect(({ body }: { body: Tokens }) => {
                     expect(body.access_token).toBeTruthy();
@@ -48,12 +48,11 @@ describe("AppController (e2e)", () => {
         it("should signin", () => {
             return request(app.getHttpServer())
                 .post("/auth/local/signin")
-                .send(dto)
+                .send(data)
                 .expect(200)
                 .expect(({ body }: { body: Tokens }) => {
                     expect(body.access_token).toBeTruthy();
                     expect(body.refresh_token).toBeTruthy();
-
                     tokens = body;
                 });
         });
