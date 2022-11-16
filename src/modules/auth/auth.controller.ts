@@ -18,12 +18,12 @@ import {
     GetCurrentUser,
     GetCurrentUserId,
     Public,
-} from "src/common/decorators";
-import { RtGuard } from "src/common/guards";
+} from "src/modules/auth/common/decorators";
+import { RtGuard } from "src/modules/auth/common/guards";
 
 import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
-import { Tokens } from "./types";
+import { Tokens } from "./common/types";
 
 @ApiTags("User authentication")
 @Controller("auth")

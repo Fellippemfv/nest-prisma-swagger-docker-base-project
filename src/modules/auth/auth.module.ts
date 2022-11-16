@@ -4,7 +4,7 @@ import { PrismaService } from "src/database/PrismaService";
 
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { AtStrategy, RtStrategy } from "./strategies";
+import { AtStrategy, RtStrategy } from "./common/strategies";
 
 @Module({
     imports: [JwtModule.register({})],

@@ -4,7 +4,7 @@ import { decode } from "jsonwebtoken";
 import { AppModule } from "src/app.module";
 import { PrismaService } from "src/database/PrismaService";
 import { AuthService } from "../../auth.service";
-import { Tokens } from "../../types";
+import { Tokens } from "../../common/types";
 
 const user = {
     email: "test@gmail.com",
