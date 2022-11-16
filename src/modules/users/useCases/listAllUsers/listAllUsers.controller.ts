@@ -22,7 +22,7 @@ import { ListAllUsersService } from "./listAllUsers.service";
 export class ListAllUsersController {
     constructor(private readonly listAllUsersService: ListAllUsersService) {}
     @Public()
-    @Roles(Role.User)
+    @Roles(Role.Admin, Role.Moderator)
     @UseGuards(RtGuard, RolesGuard)
     @Get("/all")
     @HttpCode(HttpStatus.OK)
