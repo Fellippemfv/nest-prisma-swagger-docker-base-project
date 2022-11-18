@@ -114,6 +114,20 @@ describe("Auth Flow", () => {
 
             expect(tokens).toBeUndefined();
         });
+
+        it("should throw if email incorrect", async () => {
+            let tokens: Tokens | undefined;
+            try {
+                tokens = await authSigninService.signinLocal({
+                    email: user.email + "a",
+                    password: user.password,
+                });
+            } catch (error) {
+                expect(error.status).toBe(403);
+            }
+
+            expect(tokens).toBeUndefined();
+        });
     });
 
     describe("logout", () => {
@@ -207,9 +221,6 @@ describe("Auth Flow", () => {
             const _tokens = await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
-            });
-            console.log({
-                _tokens,
             });
 
             const rt = _tokens.refresh_token;
