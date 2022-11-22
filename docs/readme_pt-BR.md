@@ -70,27 +70,17 @@ Para rodar totalmente este projeto você vai precisar criar e iniciar um contain
 
 ### Criar e iniciar container via docker-compose
 
-Para criar e iniciar container do banco de dados em background na porta 5432
-
 ```bash
+# Para criar e iniciar container do banco de dados em background na porta 5432
 npm run docker:up
-```
 
-Para criar e iniciar container de testes em background na porta 9000
-
-```bash
+# Para criar e iniciar container de testes em background na porta 9000
 npm run docker:test:up
-```
 
-Para pausar todos os containers
-
-```bash
+# Para pausar todos os containers
 docker-compose stop
-```
 
-Para iniciar todos os containers
-
-```bash
+# Para iniciar todos os containers
 docker-compose start
 ```
 
@@ -118,27 +108,18 @@ npx prisma studio
 
 ### Rodar migration
 
-Criar e sincronizar as tabelas no banco de dados
 
 ```bash
+# Criar e sincronizar as tabelas no banco de dados
 npm run migrate:dev
-```
 
-Criar e sincronizar as tabelas no banco de dados de teste
-
-```bash
+# Criar e sincronizar as tabelas no banco de dados de teste
 npm run migrate:test
-```
 
-Para apenas criar tabela nova no banco de dados
-
-```bash
+# Para apenas criar tabela nova no banco de dados
 npx prisma migrate dev --create-only
-```
 
-Fazer sincronização de migration->banco de dados->schema
-
-```bash
+# Fazer sincronização de migration->banco de dados->schema
 npx prisma db push
 ```
 
@@ -162,15 +143,12 @@ A documentação esta na rota <http://localhost:3000/api>
 
 ### Testes da aplicação
 
-Testes de ponta a ponta (E2E Tests)
 
 ```bash
+# Testes de ponta a ponta (E2E Tests)
 npm run test:e2e
-```
 
-Testes de integração (Integration Testing)
-
-```bash
+# Testes de integração (Integration Testing)
 npm run test
 ```
 

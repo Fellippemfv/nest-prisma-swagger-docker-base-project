@@ -70,27 +70,18 @@ To fully run this project you will need to create and start a container in docke
 
 ### Create and start container via docker-compose
 
-To create and start database container in background on port 5432
-
 ```bash
+
+# To create and start database container in background on port 5432
 npm run docker:up
-```
 
-To create and start test container in background on port 9000
-
-```bash
+# To create and start test container in background on port 9000
 npm run docker:test:up
-```
 
-To pause all containers
-
-```bash
+# To pause all containers
 docker-compose stop
-```
 
-To start all containers
-
-```bash
+# To start all containers
 docker-compose start
 ```
 
@@ -118,27 +109,18 @@ npx prisma studio
 
 ### Run migration
 
-Create and sync the tables in the database
 
 ```bash
+# Create and sync the tables in the database
 npm run migrate:dev
-```
 
-Create and sync the tables in the database_test
-
-```bash
+# Create and sync the tables in the database_test
 npm run migrate:test
-```
 
-To just create new table in database
-
-```bash
+# To just create new table in database
 npx prisma migrate dev --create-only
-```
 
-Do migration sync --> database --> schema
-
-```bash
+# Do migration sync --> database --> schema
 npx prisma db push
 ```
 
@@ -162,15 +144,12 @@ The documentation is on route <http://localhost:3000/api>
 
 ### Application tests
 
-End-to-end tests (E2E Tests)
 
 ```bash
+# End-to-end tests (E2E Tests)
 npm run test:e2e
-```
 
-Integration tests
-
-```bash
+# Integration tests
 npm run test
 ```
 
