@@ -136,12 +136,6 @@ npx prisma db seed
 
 <br>
 
-### Swagger documentation
-
-The documentation is on route <http://localhost:3000/api>
-
-<br>
-
 ### Application tests
 
 
@@ -155,7 +149,12 @@ npm run test
 
 <br>
 
+### Swagger documentation
+
+The documentation is on route <http://localhost:3000/api>
 ### Inmsomnia
+
+<br>
 
 Open inmsomnia application and import the file that is inside the "inmsomnia" folder in the root folder of this project. With this you will already have configured the routes for testing.
 

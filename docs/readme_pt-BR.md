@@ -135,12 +135,6 @@ npx prisma db seed
 
 <br>
 
-### Documentação do swagger
-
-A documentação esta na rota <http://localhost:3000/api>
-
-<br>
-
 ### Testes da aplicação
 
 
@@ -151,6 +145,12 @@ npm run test:e2e
 # Testes de integração (Integration Testing)
 npm run test
 ```
+
+<br>
+
+### Documentação do swagger
+
+A documentação esta na rota <http://localhost:3000/api>
 
 <br>
 
