@@ -7,7 +7,10 @@
 [x] List all users
 [x] List all users deleted
 [x] List one user by id public
-[] Update one user by id for permission role
+[x] List one user by id current
 [x] Soft Delete user
 [x] Revert Soft Delete user
 [x] Delete user
+
+[] e2e tests
+[] integration tests

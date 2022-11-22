@@ -20,14 +20,14 @@ import { RolesGuard, RtGuard } from "src/modules/auth/common/guards";
 import { Role } from "src/modules/auth/entities/role.enum";
 import { UserProfileMeService } from "./userProfileMe.service";
 
-@ApiTags("Users")
-@Controller("users")
+@ApiTags("Profile")
+@Controller("profile")
 export class UserProfileMeController {
     constructor(private readonly userProfileMeService: UserProfileMeService) {}
     @Public()
     @Roles(Role.Administrator, Role.Author, Role.Editor, Role.User)
     @UseGuards(RtGuard, RolesGuard)
-    @Get("/profile/me")
+    @Get("/me")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
         summary: "Show my profile",

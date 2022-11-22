@@ -8,15 +8,15 @@ import {
 import { Public } from "src/modules/auth/common/decorators";
 import { UserProfileService } from "./userProfile.service";
 
-@ApiTags("Users")
-@Controller("user")
+@ApiTags("Profile")
+@Controller("profile")
 export class UserProfileController {
     constructor(private readonly userProfileService: UserProfileService) {}
     @Public()
-    @Get("/profile/:slugId")
+    @Get("/user/:slugId")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
-        summary: "Show user profile",
+        summary: "Show public user profile",
     })
     @ApiOkResponse({ description: "User has been successfully show" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
