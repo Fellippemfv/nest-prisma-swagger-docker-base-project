@@ -15,6 +15,8 @@ import { UserProfileController } from "./useCases/userProfile/userProfile.contro
 import { UserProfileService } from "./useCases/userProfile/userProfile.service";
 import { UserProfileMeController } from "./useCases/userProfileMe/userProfileMe.controller";
 import { UserProfileMeService } from "./useCases/userProfileMe/userProfileMe.service";
+import { UserProfileMeUpdateController } from "./useCases/userProfileMeUpdate/userProfileMeUpdate.controller";
+import { UserProfileMeUpdateService } from "./useCases/userProfileMeUpdate/userProfileMeUpdate.service";
 
 @Module({
     controllers: [
@@ -25,6 +27,7 @@ import { UserProfileMeService } from "./useCases/userProfileMe/userProfileMe.ser
         HardDeleteUserController,
         UserProfileController,
         UserProfileMeController,
+        UserProfileMeUpdateController,
     ],
     providers: [
         ListAllUsersService,
@@ -34,6 +37,7 @@ import { UserProfileMeService } from "./useCases/userProfileMe/userProfileMe.ser
         HardDeleteUserService,
         UserProfileService,
         UserProfileMeService,
+        UserProfileMeUpdateService,
         PrismaService,
     ],
 })
