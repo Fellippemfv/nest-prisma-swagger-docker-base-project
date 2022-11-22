@@ -15,23 +15,25 @@ import { Public, Roles } from "src/modules/auth/common/decorators";
 import { RtGuard } from "src/modules/auth/common/guards";
 import { RolesGuard } from "src/modules/auth/common/guards/roles.guard";
 import { Role } from "src/modules/auth/entities/role.enum";
-import { ListAllUsersService } from "./listAllUsers.service";
+import { ListAllUsersDeletedService } from "./listAllUsersDeleted.service";
 
 @ApiTags("Users")
 @Controller("users")
-export class ListAllUsersController {
-    constructor(private readonly listAllUsersService: ListAllUsersService) {}
+export class ListAllUsersDeletedController {
+    constructor(
+        private readonly listAllUsersDeletedService: ListAllUsersDeletedService,
+    ) {}
     @Public()
     @Roles(Role.Administrator)
     @UseGuards(RtGuard, RolesGuard)
-    @Get("/all")
+    @Get("/all/deleted")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
-        summary: "Show all users",
+        summary: "Show all users deleted",
     })
     @ApiOkResponse({ description: "Users has been successfully show" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     async findAll() {
-        return this.listAllUsersService.findAll();
+        return this.listAllUsersDeletedService.findAllDeleted();
     }
 }

@@ -12,19 +12,23 @@ datasource db {
 
 model User {
     id        String   @id @default(uuid())
+    slugId    String   @unique
     email     String   @unique
-    name      String?
+    name      String
+    about     String?
     role      Role     @default(User)
     hash      String
     hashedRt  String?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    deleted   Boolean  @default(false)
 
     @@map("users")
 }
 
 enum Role {
-    Admin
-    Moderator
+    Administrator
+    Editor
+    Author
     User
 }

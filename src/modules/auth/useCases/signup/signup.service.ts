@@ -6,6 +6,7 @@ import { Tokens } from "../../common/types";
 import { AuthDto } from "../../dto";
 import { AuthTokenGetService } from "../token/tokenGet.service";
 import { AuthTokenUpdateRtHashService } from "../token/tokenUpdateRtHash.service";
+import * as uniqid from "uniqid";
 
 @Injectable()
 export class AuthSignupService {
@@ -26,13 +27,18 @@ export class AuthSignupService {
             throw new ForbiddenException("User already exists");
         }
 
-        const hash = await argon.hash(data.password);
+        const newUniqId = await uniqid("user-", "-profile");
+        const newAbout = "I am amazing and I like to study";
+        const newHash = await argon.hash(data.password);
+
         const user = await this.prisma.user
             .create({
                 data: {
                     email: data.email,
                     name: data.name,
-                    hash,
+                    about: newAbout,
+                    slugId: newUniqId,
+                    hash: newHash,
                 },
             })
             .catch((error) => {

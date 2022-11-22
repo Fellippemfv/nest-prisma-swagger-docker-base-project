@@ -31,6 +31,7 @@ describe("AppController (e2e)", () => {
         const data: AuthDto = {
             email: "test@gmail.com",
             password: "super-secret-password",
+            name: "test name",
         };
 
         let tokens: Tokens;

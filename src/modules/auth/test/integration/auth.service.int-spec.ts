@@ -12,6 +12,7 @@ import { AuthTokenRefreshService } from "../../useCases/token/tokenRefresh.servi
 const user = {
     email: "test@gmail.com",
     password: "super-secret-password",
+    name: "test name 1",
 };
 
 describe("Auth Flow", () => {
@@ -47,6 +48,7 @@ describe("Auth Flow", () => {
             const tokens = await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             expect(tokens.access_token).toBeTruthy();
@@ -59,6 +61,7 @@ describe("Auth Flow", () => {
                 tokens = await authSignupService.signupLocal({
                     email: user.email,
                     password: user.password,
+                    name: user.name,
                 });
             } catch (error) {
                 expect(error.status).toBe(403);
@@ -90,6 +93,7 @@ describe("Auth Flow", () => {
             await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             const tokens = await authSigninService.signinLocal({
@@ -144,6 +148,7 @@ describe("Auth Flow", () => {
             await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             let userFromDb: User | null;
@@ -189,6 +194,7 @@ describe("Auth Flow", () => {
             const _tokens = await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             const rt = _tokens.refresh_token;
@@ -221,6 +227,7 @@ describe("Auth Flow", () => {
             const _tokens = await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             const rt = _tokens.refresh_token;
@@ -247,6 +254,7 @@ describe("Auth Flow", () => {
             const _tokens = await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             const rt = _tokens.refresh_token;

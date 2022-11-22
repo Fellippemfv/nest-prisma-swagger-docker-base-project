@@ -1,9 +1,10 @@
 import {
     Controller,
-    Get,
+    Param,
     HttpCode,
     HttpStatus,
     UseGuards,
+    Patch,
 } from "@nestjs/common";
 import {
     ApiForbiddenResponse,
@@ -15,23 +16,25 @@ import { Public, Roles } from "src/modules/auth/common/decorators";
 import { RtGuard } from "src/modules/auth/common/guards";
 import { RolesGuard } from "src/modules/auth/common/guards/roles.guard";
 import { Role } from "src/modules/auth/entities/role.enum";
-import { ListAllUsersService } from "./listAllUsers.service";
+import { SoftDeleteUserService } from "./softDeleteUser.service";
 
 @ApiTags("Users")
 @Controller("users")
-export class ListAllUsersController {
-    constructor(private readonly listAllUsersService: ListAllUsersService) {}
+export class SoftDeleteUserController {
+    constructor(
+        private readonly softDeleteUserService: SoftDeleteUserService,
+    ) {}
     @Public()
     @Roles(Role.Administrator)
     @UseGuards(RtGuard, RolesGuard)
-    @Get("/all")
+    @Patch("/delete/soft/:id")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
-        summary: "Show all users",
+        summary: "User soft delete",
     })
-    @ApiOkResponse({ description: "Users has been successfully show" })
+    @ApiOkResponse({ description: "Users has been successfully sof delete" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
-    async findAll() {
-        return this.listAllUsersService.findAll();
+    async softDeleted(@Param("id") id: string) {
+        return this.softDeleteUserService.delete(id);
     }
 }

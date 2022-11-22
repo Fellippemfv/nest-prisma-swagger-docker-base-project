@@ -7,6 +7,7 @@ import { ListAllUsersService } from "../../useCases/listAllUsers/listAllUsers.se
 const user = {
     email: "test2@gmail.com",
     password: "super-secret-password2",
+    name: "test name 2",
 };
 
 //ajeitar testes de usuarios
@@ -39,6 +40,7 @@ describe("Dashboard Flow", () => {
             await authSignupService.signupLocal({
                 email: user.email,
                 password: user.password,
+                name: user.name,
             });
 
             const allUsers = await listAllUsersService.findAll();
