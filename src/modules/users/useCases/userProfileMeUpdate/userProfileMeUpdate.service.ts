@@ -41,8 +41,8 @@ export class UserProfileMeUpdateService {
             },
         });
 
-        const { email, name, about, createdAt, updatedAt } = userUpdated;
+        const { email, name, about, updatedAt } = userUpdated;
 
-        return { email, name, about, createdAt, updatedAt };
+        return { email, name, about, updatedAt };
     }
 }
