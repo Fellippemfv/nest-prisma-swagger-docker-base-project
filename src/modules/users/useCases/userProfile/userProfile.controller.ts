@@ -13,7 +13,7 @@ import { UserProfileService } from "./userProfile.service";
 export class UserProfileController {
     constructor(private readonly userProfileService: UserProfileService) {}
     @Public()
-    @Get("/:slugId")
+    @Get("/profile/:slugId")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
         summary: "Show user profile",
