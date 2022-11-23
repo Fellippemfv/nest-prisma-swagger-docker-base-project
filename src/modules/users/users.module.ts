@@ -1,10 +1,6 @@
 import { Module } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
 
-import { ListAllUsersController } from "./useCases/listAllUsers/listAllUsers.controller";
-import { ListAllUsersService } from "./useCases/listAllUsers/listAllUsers.service";
-import { ListAllUsersDeletedController } from "./useCases/listAllUsersDeleted/listAllUsersDeleted.controller";
-import { ListAllUsersDeletedService } from "./useCases/listAllUsersDeleted/listAllUsersDeleted.service";
 import { DeleteUserHardService } from "./useCases/deleteUserHard/deleteUserHard.service";
 import { DeleteUserHardController } from "./useCases/deleteUserHard/deleteUserHard.controller";
 import { DeleteUserSoftController } from "./useCases/deleteUserSoft/deleteUserSoft.controller";
@@ -17,11 +13,15 @@ import { ListUserProfilePublicController } from "./useCases/listUserProfilePubli
 import { ListUserProfilePublicService } from "./useCases/listUserProfilePublic/listUserProfilePublic.service";
 import { UpdateUserProfilePrivateController } from "./useCases/updateUserProfilePrivate/updateUserProfilePrivate.controller";
 import { UpdateUserProfilePrivateService } from "./useCases/updateUserProfilePrivate/updateUserProfilePrivate.service";
+import { ListUsersAllController } from "./useCases/listUsersAll/listUsersAll.controller";
+import { ListUsersAllService } from "./useCases/listUsersAll/listUsersAll.service";
+import { ListUsersAllDeletedController } from "./useCases/listUsersAllDeleted/listUsersAllDeleted.controller";
+import { ListUsersAllDeletedService } from "./useCases/listUsersAllDeleted/listUsersAllDeleted.service";
 
 @Module({
     controllers: [
-        ListAllUsersController,
-        ListAllUsersDeletedController,
+        ListUsersAllController,
+        ListUsersAllDeletedController,
         DeleteUserSoftController,
         DeleteUserSoftRevertController,
         DeleteUserHardController,
@@ -30,8 +30,8 @@ import { UpdateUserProfilePrivateService } from "./useCases/updateUserProfilePri
         UpdateUserProfilePrivateController,
     ],
     providers: [
-        ListAllUsersService,
-        ListAllUsersDeletedService,
+        ListUsersAllService,
+        ListUsersAllDeletedService,
         DeleteUserSoftService,
         DeleteUserSoftRevertService,
         DeleteUserHardService,

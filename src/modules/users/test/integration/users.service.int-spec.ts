@@ -2,7 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { AppModule } from "src/app.module";
 import { PrismaService } from "src/database/PrismaService";
 import { AuthSignupService } from "src/modules/auth/useCases/signup/signup.service";
-import { ListAllUsersService } from "../../useCases/listAllUsers/listAllUsers.service";
+import { ListUsersAllService } from "../../useCases/listUsersAll/listUsersAll.service";
 
 const user = {
     email: "test2@gmail.com",
@@ -12,7 +12,7 @@ const user = {
 
 describe("Dashboard Flow", () => {
     let prisma: PrismaService;
-    let listAllUsersService: ListAllUsersService;
+    let listUsersAllService: ListUsersAllService;
     let authSignupService: AuthSignupService;
     let moduleRef: TestingModule;
 
@@ -22,7 +22,7 @@ describe("Dashboard Flow", () => {
         }).compile();
 
         prisma = moduleRef.get(PrismaService);
-        listAllUsersService = moduleRef.get(ListAllUsersService);
+        listUsersAllService = moduleRef.get(ListUsersAllService);
         authSignupService = moduleRef.get(AuthSignupService);
     });
 
@@ -42,7 +42,7 @@ describe("Dashboard Flow", () => {
                 name: user.name,
             });
 
-            const allUsers = await listAllUsersService.findAll();
+            const allUsers = await listUsersAllService.findAll();
 
             expect(200);
             expect(allUsers).toBeDefined();

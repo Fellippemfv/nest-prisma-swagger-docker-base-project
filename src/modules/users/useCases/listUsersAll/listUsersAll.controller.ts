@@ -15,12 +15,12 @@ import { Public, Roles } from "src/modules/auth/common/decorators";
 import { RtGuard } from "src/modules/auth/common/guards";
 import { RolesGuard } from "src/modules/auth/common/guards/roles.guard";
 import { Role } from "src/modules/auth/entities/role.enum";
-import { ListAllUsersService } from "./listAllUsers.service";
+import { ListUsersAllService } from "./listUsersAll.service";
 
 @ApiTags("Users")
 @Controller("users")
-export class ListAllUsersController {
-    constructor(private readonly listAllUsersService: ListAllUsersService) {}
+export class ListUsersAllController {
+    constructor(private readonly listUsersAllService: ListUsersAllService) {}
     @Public()
     @Roles(Role.Administrator)
     @UseGuards(RtGuard, RolesGuard)
@@ -32,6 +32,6 @@ export class ListAllUsersController {
     @ApiOkResponse({ description: "Users has been successfully show" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     async findAll() {
-        return this.listAllUsersService.findAll();
+        return this.listUsersAllService.findAll();
     }
 }
