@@ -4,7 +4,7 @@ import {
     HttpCode,
     HttpStatus,
     UseGuards,
-    Patch,
+    Delete,
 } from "@nestjs/common";
 import {
     ApiForbiddenResponse,
@@ -16,25 +16,25 @@ import { Public, Roles } from "src/modules/auth/common/decorators";
 import { RtGuard } from "src/modules/auth/common/guards";
 import { RolesGuard } from "src/modules/auth/common/guards/roles.guard";
 import { Role } from "src/modules/auth/entities/role.enum";
-import { SoftDeleteUserService } from "./softDeleteUser.service";
+import { DeleteUserHardService } from "./deleteUserHard.service";
 
 @ApiTags("Users")
 @Controller("users")
-export class SoftDeleteUserController {
+export class DeleteUserHardController {
     constructor(
-        private readonly softDeleteUserService: SoftDeleteUserService,
+        private readonly deleteUserHardService: DeleteUserHardService,
     ) {}
     @Public()
     @Roles(Role.Administrator)
     @UseGuards(RtGuard, RolesGuard)
-    @Patch("/delete/soft/:id")
+    @Delete("/delete/hard/:id")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
-        summary: "User soft delete",
+        summary: "User hard delete",
     })
-    @ApiOkResponse({ description: "Users has been successfully sof delete" })
+    @ApiOkResponse({ description: "Users has been successfully hard delete" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     async softDeleted(@Param("id") id: string) {
-        return this.softDeleteUserService.delete(id);
+        return this.deleteUserHardService.delete(id);
     }
 }

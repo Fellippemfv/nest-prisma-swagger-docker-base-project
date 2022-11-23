@@ -20,13 +20,13 @@ import {
 import { RolesGuard, RtGuard } from "src/modules/auth/common/guards";
 import { Role } from "src/modules/auth/entities/role.enum";
 import { UpdateUserDto } from "../../dto/update-user.dto";
-import { UserProfileMeUpdateService } from "./userProfileMeUpdate.service";
+import { UpdateUserProfilePrivateService } from "./updateUserProfilePrivate.service";
 
 @ApiTags("Profile")
 @Controller("profile")
-export class UserProfileMeUpdateController {
+export class UpdateUserProfilePrivateController {
     constructor(
-        private readonly userProfileMeUpdateService: UserProfileMeUpdateService,
+        private readonly updateUserProfilePrivateService: UpdateUserProfilePrivateService,
     ) {}
     @Public()
     @Roles(Role.Administrator, Role.Author, Role.Editor, Role.User)
@@ -39,6 +39,6 @@ export class UserProfileMeUpdateController {
     @ApiOkResponse({ description: "User has been successfully updated" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     findOne(@GetCurrentUserId() userId: string, @Body() data: UpdateUserDto) {
-        return this.userProfileMeUpdateService.findOne(userId, data);
+        return this.updateUserProfilePrivateService.findOne(userId, data);
     }
 }

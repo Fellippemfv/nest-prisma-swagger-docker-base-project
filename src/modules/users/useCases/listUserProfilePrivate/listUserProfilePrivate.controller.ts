@@ -18,12 +18,14 @@ import {
 } from "src/modules/auth/common/decorators";
 import { RolesGuard, RtGuard } from "src/modules/auth/common/guards";
 import { Role } from "src/modules/auth/entities/role.enum";
-import { UserProfileMeService } from "./userProfileMe.service";
+import { ListUserProfilePrivateService } from "./listUserProfilePrivate.service";
 
 @ApiTags("Profile")
 @Controller("profile")
-export class UserProfileMeController {
-    constructor(private readonly userProfileMeService: UserProfileMeService) {}
+export class ListUserProfilePrivateController {
+    constructor(
+        private readonly listUserProfilePrivateService: ListUserProfilePrivateService,
+    ) {}
     @Public()
     @Roles(Role.Administrator, Role.Author, Role.Editor, Role.User)
     @UseGuards(RtGuard, RolesGuard)
@@ -35,6 +37,6 @@ export class UserProfileMeController {
     @ApiOkResponse({ description: "User has been successfully show" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     findOne(@GetCurrentUserId() userId: string) {
-        return this.userProfileMeService.findOne(userId);
+        return this.listUserProfilePrivateService.findOne(userId);
     }
 }

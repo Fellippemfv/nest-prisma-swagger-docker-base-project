@@ -2,27 +2,25 @@ import { ForbiddenException, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
 
 @Injectable()
-export class HardDeleteUserService {
+export class ListUserProfilePrivateService {
     constructor(private prisma: PrismaService) {}
 
-    async delete(id: string) {
+    async findOne(userId: string) {
         const user = await this.prisma.user.findFirst({
             where: {
-                id,
-                deleted: true,
+                id: userId,
+                deleted: false,
             },
         });
 
         if (!user) {
             throw new ForbiddenException(
-                "This user does not exist or has not yet been hard delete",
+                "This user does not exist or has been soft delete/ hard delete",
             );
         }
 
-        await this.prisma.user.delete({
-            where: {
-                id,
-            },
-        });
+        const { email, name, about, role, createdAt, updatedAt } = user;
+
+        return { email, name, about, role, createdAt, updatedAt };
     }
 }

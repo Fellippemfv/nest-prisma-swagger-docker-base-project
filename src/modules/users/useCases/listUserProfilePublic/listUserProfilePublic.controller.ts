@@ -6,12 +6,14 @@ import {
     ApiTags,
 } from "@nestjs/swagger";
 import { Public } from "src/modules/auth/common/decorators";
-import { UserProfileService } from "./userProfile.service";
+import { ListUserProfilePublicService } from "./listUserProfilePublic.service";
 
 @ApiTags("Profile")
 @Controller("profile")
-export class UserProfileController {
-    constructor(private readonly userProfileService: UserProfileService) {}
+export class ListUserProfilePublicController {
+    constructor(
+        private readonly listUserProfilePublicService: ListUserProfilePublicService,
+    ) {}
     @Public()
     @Get("/user/:slugId")
     @HttpCode(HttpStatus.OK)
@@ -21,6 +23,6 @@ export class UserProfileController {
     @ApiOkResponse({ description: "User has been successfully show" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     async findOne(@Param("slugId") slugId: string) {
-        return this.userProfileService.findOne(slugId);
+        return this.listUserProfilePublicService.findOne(slugId);
     }
 }

@@ -16,27 +16,25 @@ import { Public, Roles } from "src/modules/auth/common/decorators";
 import { RtGuard } from "src/modules/auth/common/guards";
 import { RolesGuard } from "src/modules/auth/common/guards/roles.guard";
 import { Role } from "src/modules/auth/entities/role.enum";
-import { RevertSoftDeleteUserService } from "./revertSoftDeleteUser.service";
+import { DeleteUserSoftService } from "./deleteUserSoft.service";
 
 @ApiTags("Users")
 @Controller("users")
-export class RevertSoftDeleteUserController {
+export class DeleteUserSoftController {
     constructor(
-        private readonly revertSoftDeleteUserService: RevertSoftDeleteUserService,
+        private readonly deleteUserSoftService: DeleteUserSoftService,
     ) {}
     @Public()
     @Roles(Role.Administrator)
     @UseGuards(RtGuard, RolesGuard)
-    @Patch("delete/soft/revert/:id")
+    @Patch("/delete/soft/:id")
     @HttpCode(HttpStatus.OK)
     @ApiOperation({
-        summary: "Revert a user soft delete",
+        summary: "User soft delete",
     })
-    @ApiOkResponse({
-        description: "Users has been successfully revert",
-    })
+    @ApiOkResponse({ description: "Users has been successfully sof delete" })
     @ApiForbiddenResponse({ description: "Forbidden resource" })
     async softDeleted(@Param("id") id: string) {
-        return this.revertSoftDeleteUserService.delete(id);
+        return this.deleteUserSoftService.delete(id);
     }
 }

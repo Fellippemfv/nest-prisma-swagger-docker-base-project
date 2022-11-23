@@ -7,7 +7,7 @@ import { PrismaService } from "src/database/PrismaService";
 import { UpdateUserDto } from "../../dto/update-user.dto";
 
 @Injectable()
-export class UserProfileMeUpdateService {
+export class UpdateUserProfilePrivateService {
     constructor(private prisma: PrismaService) {}
 
     async findOne(userId: string, data: UpdateUserDto) {

@@ -10,7 +10,6 @@ const user = {
     name: "test name 2",
 };
 
-//ajeitar testes de usuarios
 describe("Dashboard Flow", () => {
     let prisma: PrismaService;
     let listAllUsersService: ListAllUsersService;

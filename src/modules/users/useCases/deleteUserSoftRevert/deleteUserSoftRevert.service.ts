@@ -2,26 +2,30 @@ import { ForbiddenException, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
 
 @Injectable()
-export class UserProfileService {
+export class DeleteUserSoftRevertService {
     constructor(private prisma: PrismaService) {}
 
-    async findOne(slugId: string) {
+    async delete(id: string) {
         const user = await this.prisma.user.findFirst({
             where: {
-                slugId,
-                deleted: false,
+                id,
+                deleted: true,
             },
         });
 
         if (!user) {
             throw new ForbiddenException(
-                "This user does not exist or has been delete",
+                "This user does not exist or has already been revert",
             );
         }
 
-        /*         const userReturn = user.name; */
-        const { name, about, createdAt, updatedAt } = user;
-
-        return { name, about, createdAt, updatedAt };
+        await this.prisma.user.update({
+            where: {
+                id,
+            },
+            data: {
+                deleted: false,
+            },
+        });
     }
 }

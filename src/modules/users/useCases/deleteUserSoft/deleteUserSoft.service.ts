@@ -2,7 +2,7 @@ import { ForbiddenException, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/database/PrismaService";
 
 @Injectable()
-export class SoftDeleteUserService {
+export class DeleteUserSoftService {
     constructor(private prisma: PrismaService) {}
 
     async delete(id: string) {
